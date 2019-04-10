@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1072123786362",
+    "firebase_url": "https://loginbsc.firebaseio.com",
+    "project_id": "loginbsc",
+    "storage_bucket": "loginbsc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072123786362:android:113129a60861151f",
+        "android_client_info": {
+          "package_name": "com.example.theycallme_addy.bsccs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072123786362-tjc3bv1n540hnsr8nb31ajup2mvs4ejv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx_oBTTyap_hnR02CAvtlK0E6AWq6YghY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
