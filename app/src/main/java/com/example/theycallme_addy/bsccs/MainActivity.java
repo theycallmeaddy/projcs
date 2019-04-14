@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.etPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnLogin);
-        userRegistration = (TextView)findViewById(R.id.tvRegister) ;
+        userRegistration = (TextView)findViewById(R.id.tvRegister);
         forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
 
 
@@ -141,5 +143,29 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Verify Your Email" , Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_layout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.teacherMenu: {
+                startActivity(new Intent(MainActivity.this, TeacherLogin.class));
+                break;
+            }
+            case R.id.aboutUs:{
+
+                startActivity(new Intent(MainActivity.this , AboutUs.class));
+                break;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
