@@ -68,7 +68,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String roll = newUserRoll.getText().toString();
                 String email = newUserEmail.getText().toString();
 
-                UserProfile userProfile = new UserProfile(email , name , roll);
+                UserProfile userProfile = new UserProfile(email , name , roll , true);
 
                 databaseReference.setValue(userProfile);
 

@@ -23,7 +23,8 @@
         <activity android:name=".UpdateProfile" />
         <activity android:name=".UpdatePassword" />
         <activity android:name=".TeacherLogin" />
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AboutUs" />
+        <activity android:name=".TeacherInterface"></activity>
     </application>
 
 </manifest>

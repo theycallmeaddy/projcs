@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private TextView forgotPassword;
-
+    private FirebaseDatabase firebaseDatabase;
+    Boolean type,emailflag;
 
 
     @Override
@@ -39,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Name = (EditText)findViewById(R.id.etName);
-        Password = (EditText)findViewById(R.id.etPassword);
+        Name = (EditText)findViewById(R.id.etTeacherEmail);
+        Password = (EditText)findViewById(R.id.etTeacherPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
-        Login = (Button)findViewById(R.id.btnLogin);
+        Login = (Button)findViewById(R.id.btnTeacherLogin);
         userRegistration = (TextView)findViewById(R.id.tvRegister);
         forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
 
@@ -50,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Info.setText("No of attempts remaining: 5");
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
         progressDialog = new ProgressDialog(this);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -132,17 +139,43 @@ public class MainActivity extends AppCompatActivity {
     private void checkEmailVerification(){
 
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
-        Boolean emailflag = firebaseUser.isEmailVerified();
+        emailflag = firebaseUser.isEmailVerified();
 
-        if(emailflag){
-            finish();
 
-            startActivity(new Intent(MainActivity.this, SecondActivity.class));
-        }
-        else{
-            Toast.makeText(this, "Verify Your Email" , Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
-        }
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("Students").child(firebaseAuth.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                type = userProfile.getId();
+                Info.setText(type.toString());
+
+
+                if(emailflag && type.toString()=="true"){
+                    //finish();
+
+                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Verify Your Email" , Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signOut();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+
+
+
     }
 
     @Override

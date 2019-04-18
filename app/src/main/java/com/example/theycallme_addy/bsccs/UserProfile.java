@@ -5,15 +5,17 @@ public class UserProfile {
     public  String userName;
     public  String userEmail;
     public  String userRoll;
+    public  Boolean id;
 
     public UserProfile(){
 
     }
 
-    public UserProfile( String userEmail, String userName, String userRoll) {
+    public UserProfile( String userEmail, String userName, String userRoll, Boolean id) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userRoll = userRoll;
+        this.id = id;
     }
 
     public String getUserName() {
@@ -39,4 +41,10 @@ public class UserProfile {
     public void setUserRoll(String userRoll) {
         this.userRoll = userRoll;
     }
+
+    public Boolean getId() {
+        return id;
+    }
+
+    public void setId(Boolean id) { this.id = id; }
 }
