@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class TeacherLogin extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class TeacherLogin extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private FirebaseDatabase firebaseDatabase;
+    Boolean type;
 
 
     @Override
@@ -82,9 +86,11 @@ public class TeacherLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+                    checkTeacher();
                     progressDialog.dismiss();
-                    Toast.makeText(TeacherLogin.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(TeacherLogin.this, TeacherInterface.class));
+                    //Toast.makeText(TeacherLogin.this,"Login Successful",Toast.LENGTH_SHORT).show();
+
 
 
                 }else{
@@ -97,4 +103,57 @@ public class TeacherLogin extends AppCompatActivity {
 
 
     }
+
+    private void checkTeacher(){
+
+        FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("Teacher").child(firebaseAuth.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+
+
+                try {
+                    type = userProfile.getId();
+
+                    if(type.toString() == "false"){
+                        finish();
+                        startActivity(new Intent(TeacherLogin.this, TeacherInterface.class));
+
+
+                    }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(TeacherLogin.this, "Teacher Not Registered" , Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signOut();
+
+                }
+
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(TeacherLogin.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+
+
+
+    }
+
+
+
 }

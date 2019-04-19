@@ -61,9 +61,45 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if(user != null){
+
+
+        if(user != null ){
             finish();
-            startActivity(new Intent(MainActivity.this, SecondActivity.class));
+
+            DatabaseReference databaseReference = firebaseDatabase.getReference().child("Teacher").child(firebaseAuth.getUid());
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+
+
+                    try {
+                        type = userProfile.getId();
+
+                        if(type.toString() == "false"){
+                            finish();
+                            startActivity(new Intent(MainActivity.this, TeacherInterface.class));
+
+
+                        }
+
+                    }
+                    catch (Exception e){
+                        startActivity(new Intent(MainActivity.this, SecondActivity.class));
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(MainActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+
+
+                }
+            });
+
 
         }
 
@@ -153,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(emailflag && type.toString()=="true"){
-                    //finish();
+                    finish();
 
                     startActivity(new Intent(MainActivity.this, SecondActivity.class));
                 }
