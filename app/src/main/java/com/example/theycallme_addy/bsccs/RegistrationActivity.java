@@ -5,9 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,14 +23,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText userName,userPassword, userEmail, userRoll;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
-    private ImageView userProfilePic;
-    String name, email, password,roll;
+    //private ImageView userProfilePic;
+    private Spinner yearch;
+    String name, email, password,roll, yr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 sendEmailVerification();
-
-
-                                finish();
-                                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                                //startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
 
 
 
@@ -86,9 +90,44 @@ public class RegistrationActivity extends AppCompatActivity {
         regButton = (Button) findViewById(R.id.btnRegister);
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
         userRoll = (EditText) findViewById(R.id.etRoll);
-        userProfilePic = (ImageView)findViewById(R.id.ivProfile);
+        //userProfilePic = (ImageView)findViewById(R.id.ivProfile);
+        yearch = (Spinner)findViewById(R.id.spinner1);
+
+
+        List<String> adapter = new ArrayList<>();
+        adapter.add(0, "Choose Year");
+        adapter.add("First Year");
+        adapter.add("Second Year");
+        adapter.add("Third Year");
+
+        ArrayAdapter<String> dataAdapter;
+        dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,adapter);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearch.setAdapter(dataAdapter);
+        yearch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(parent.getItemAtPosition(position).equals("Choose Year")){
+                    //do nothing
+                }
+
+                else{
+                    yr = parent.getItemAtPosition(position).toString();
+                    Toast.makeText(parent.getContext(), yr, Toast.LENGTH_SHORT ).show();
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                yr = null;
+
+            }
+        });
 
     }
+
 
     private Boolean validate(){
 
@@ -100,7 +139,7 @@ public class RegistrationActivity extends AppCompatActivity {
         roll = userRoll.getText().toString();
 
 
-        if(name.isEmpty() || password.isEmpty() || email.isEmpty() || roll.isEmpty()){
+        if(name.isEmpty() || password.isEmpty() || email.isEmpty() || roll.isEmpty() || yr =="Choose Year" || yr == null){
             Toast.makeText(this,"Please Enter All Details",Toast.LENGTH_SHORT).show();
         }
         else{
@@ -110,7 +149,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendEmailVerification(){
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser != null){
 
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -118,11 +157,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         sendUserData();
-
-                        Toast.makeText(RegistrationActivity.this , "Successfull Registration, Verification Mail Sent",Toast.LENGTH_SHORT).show();
                         firebaseAuth.signOut();
+
+                        Toast.makeText(RegistrationActivity.this , "Successful Registration, Verification Mail Sent",Toast.LENGTH_SHORT).show();
                         finish();
-                        startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                        //startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
 
                     }
                     else{
@@ -139,9 +178,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference().child("Teacher").child(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(email, name, roll,true);
+        DatabaseReference myRef = firebaseDatabase.getReference().child("Students").child(firebaseAuth.getUid());
+        UserProfile userProfile = new UserProfile(email, name, roll,true, yr);
         myRef.setValue(userProfile);
     }
+
 
 }

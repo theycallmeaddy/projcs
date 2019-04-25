@@ -6,16 +6,18 @@ public class UserProfile {
     public  String userEmail;
     public  String userRoll;
     public  Boolean id;
+    public  String year;
 
     public UserProfile(){
 
     }
 
-    public UserProfile( String userEmail, String userName, String userRoll, Boolean id) {
+    public UserProfile( String userEmail, String userName, String userRoll, Boolean id, String year) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userRoll = userRoll;
         this.id = id;
+        this.year = year;
     }
 
     public String getUserName() {
@@ -47,4 +49,8 @@ public class UserProfile {
     }
 
     public void setId(Boolean id) { this.id = id; }
+
+    public String getYear() { return year; }
+
+    public void setYear(String year) { this.year = year; }
 }

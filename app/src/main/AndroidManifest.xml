@@ -24,7 +24,13 @@
         <activity android:name=".UpdatePassword" />
         <activity android:name=".TeacherLogin" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".TeacherInterface"></activity>
+        <activity android:name=".TeacherInterface" />
+        <activity android:name=".FirstYear" />
+        <activity android:name=".SecondYear" />
+        <activity android:name=".ThirdYear" />
+        <activity android:name=".ListFirst" />
+        <activity android:name=".ListSecond" />
+        <activity android:name=".ListThird"></activity>
     </application>
 
 </manifest>

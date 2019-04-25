@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageView profilePic;
+    //private ImageView profilePic;
     private TextView profileName, profileRoll, profileEmail;
     private Button profileUpdate, changePassword;
     private FirebaseAuth firebaseAuth;
@@ -32,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        profilePic = findViewById(R.id.ivProfilePic);
+        //profilePic = findViewById(R.id.ivProfilePic);
         profileName = findViewById(R.id.tvProfileName);
         profileRoll = findViewById(R.id.tvProfileRoll);
         profileEmail = findViewById(R.id.tvProfileEmail);

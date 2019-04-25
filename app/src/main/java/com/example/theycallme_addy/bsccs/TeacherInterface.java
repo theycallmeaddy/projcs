@@ -5,21 +5,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class TeacherInterface extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private Button First, Second, Third;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_interface);
 
+        First = (Button)findViewById(R.id.btnFirst);
+        Second = (Button)findViewById(R.id.btnSecond);
+        Third = (Button)findViewById(R.id.btnThird);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+        First.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeacherInterface.this, FirstYear.class));
+            }
+        });
+
+        Second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeacherInterface.this, SecondYear.class));
+            }
+        });
+
+        Third.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeacherInterface.this, ThirdYear.class));
+            }
+        });
     }
+
+
 
     private void Logout(){
         firebaseAuth.signOut();

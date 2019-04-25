@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(user != null ){
             finish();
+            Toast.makeText(MainActivity.this, "Wait a Moment!", Toast.LENGTH_LONG).show();
 
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("Teacher").child(firebaseAuth.getUid());
 
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     catch (Exception e){
+
                         startActivity(new Intent(MainActivity.this, SecondActivity.class));
 
                     }

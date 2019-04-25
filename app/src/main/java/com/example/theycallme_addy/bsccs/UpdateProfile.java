@@ -41,7 +41,7 @@ public class UpdateProfile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        final DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("Students").child(firebaseAuth.getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,7 +68,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String roll = newUserRoll.getText().toString();
                 String email = newUserEmail.getText().toString();
 
-                UserProfile userProfile = new UserProfile(email , name , roll , true);
+                UserProfile userProfile = new UserProfile(email , name , roll , true ,null);
 
                 databaseReference.setValue(userProfile);
 
