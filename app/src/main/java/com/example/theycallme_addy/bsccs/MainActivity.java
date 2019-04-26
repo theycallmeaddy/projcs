@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private TextView forgotPassword;
     private FirebaseDatabase firebaseDatabase;
-    Boolean type,emailflag;
+    Boolean type,emailFlag;
 
 
     @Override
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkEmailVerification(){
 
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
-        emailflag = firebaseUser.isEmailVerified();
+        emailFlag = firebaseUser.isEmailVerified();
 
 
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("Students").child(firebaseAuth.getUid());
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 Info.setText(type.toString());
 
 
-                if(emailflag && type.toString()=="true"){
+                if(emailFlag && type.toString()=="true"){
                     finish();
 
                     startActivity(new Intent(MainActivity.this, SecondActivity.class));

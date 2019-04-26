@@ -30,7 +30,9 @@
         <activity android:name=".ThirdYear" />
         <activity android:name=".ListFirst" />
         <activity android:name=".ListSecond" />
-        <activity android:name=".ListThird"></activity>
+        <activity android:name=".ListThird" />
+        <activity android:name=".AddFirst" />
+        <activity android:name=".StudFirstYear"></activity>
     </application>
 
 </manifest>
