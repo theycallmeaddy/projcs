@@ -22,6 +22,7 @@ public class UpdateProfile extends AppCompatActivity {
     private Button save;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
+    String year;
 
 
     @Override
@@ -50,6 +51,7 @@ public class UpdateProfile extends AppCompatActivity {
                 newUserName.setText(userProfile.getUserName());
                 newUserEmail.setText(userProfile.getUserEmail());
                 newUserRoll.setText(userProfile.getUserRoll());
+                year = userProfile.getYear();
 
             }
 
@@ -68,7 +70,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String roll = newUserRoll.getText().toString();
                 String email = newUserEmail.getText().toString();
 
-                UserProfile userProfile = new UserProfile(email , name , roll , true ,null);
+                UserProfile userProfile = new UserProfile(email , name , roll , true ,year, firebaseAuth.getUid());
 
                 databaseReference.setValue(userProfile);
 

@@ -79,8 +79,8 @@ public class RecieveFirst extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference().child("Assignment First Year Answers").child(value).child(firebaseAuth.getUid());
-
-        myRef.setValue(answer);
+        RecieveAnswer recieveAnswer = new RecieveAnswer(answer);
+        myRef.setValue(recieveAnswer);
 
         Toast.makeText(RecieveFirst.this,"Assignment Submitted Successfully" ,Toast.LENGTH_SHORT).show();
     }

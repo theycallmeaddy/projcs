@@ -34,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     //private ImageView userProfilePic;
     private Spinner yearch;
-    String name, email, password,roll, yr;
+    String name, email, password,roll, yr, uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +179,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference().child("Students").child(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(email, name, roll,true, yr);
+        UserProfile userProfile = new UserProfile(email, name, roll,true, yr, firebaseAuth.getUid());
         myRef.setValue(userProfile);
     }
 

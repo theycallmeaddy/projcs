@@ -14,12 +14,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class StudFirstYear extends AppCompatActivity {
 
@@ -38,9 +35,9 @@ public class StudFirstYear extends AppCompatActivity {
 
 
         recieveAssignment = new RecieveAssignment();
-        titleasg = new String[10];
+        titleasg = new String[100];
 
-        listView = (ListView)findViewById(R.id.lvAsg);
+        listView = (ListView)findViewById(R.id.lvMarksList);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Assignment First Year");
 
