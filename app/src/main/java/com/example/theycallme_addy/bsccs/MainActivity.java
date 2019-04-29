@@ -122,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
                     Password.setError("Enter Password");
                 }
 
+                else if(Password.length()<6){
+                    Password.setError("Enter Atleast 6 Character Password");
+                }
+
 
                 else {
                     validate(Name.getText().toString(), Password.getText().toString());
@@ -228,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.teacherMenu: {
                 startActivity(new Intent(MainActivity.this, TeacherLogin.class));
+                finish();
                 break;
             }
             case R.id.aboutUs:{

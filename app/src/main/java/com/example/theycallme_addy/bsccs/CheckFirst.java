@@ -34,11 +34,12 @@ public class CheckFirst extends AppCompatActivity {
         setContentView(R.layout.activity_check_first);
 
         recieveAssignment = new RecieveAssignment();
-        titleasg = new String[10];
+        titleasg = new String[100];
 
         listView = (ListView)findViewById(R.id.lvMarksList);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Assignment First Year");
+
 
         list = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this,R.layout.user_info, R.id.userInfo, list);
@@ -50,6 +51,7 @@ public class CheckFirst extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i=0;
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
+
 
                     recieveAssignment = ds.getValue(RecieveAssignment.class);
                     titleasg[i] = recieveAssignment.getAsgTitle().toString();

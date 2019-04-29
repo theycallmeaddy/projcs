@@ -14,14 +14,16 @@ public class SecondYear extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private TextView testing;
-    private Button studList;
+    private Button studList, add, checkAsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_year);
 
-        studList = (Button)findViewById(R.id.btnStdList2);
+        studList = (Button)findViewById(R.id.btnStdList1);
+        add = (Button)findViewById(R.id.btnAddAsgn);
+        checkAsg = (Button)findViewById(R.id.btnCheck);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -29,6 +31,21 @@ public class SecondYear extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SecondYear.this, ListSecond.class));
+            }
+        });
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondYear.this, AddSecond.class));
+            }
+        });
+
+        checkAsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondYear.this, CheckSecond.class));
             }
         });
     }

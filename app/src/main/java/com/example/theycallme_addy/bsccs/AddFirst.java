@@ -19,12 +19,13 @@ import java.util.Map;
 
 public class AddFirst extends AppCompatActivity {
 
-    private TextView Head;
-    private EditText asgTitle, subDate, asgQuestions;
+    private TextView Head,Submission;
+    private EditText asgTitle, subDate, asgQuestions,subMonth, subYear;
     private Button AddSend;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
-    String title,sdate,question;
+    String title,sdate,smonth,syear,question;
+    Integer finalValue;
     Boolean res = false;
 
     @Override
@@ -33,14 +34,17 @@ public class AddFirst extends AppCompatActivity {
         setContentView(R.layout.activity_add_first);
 
         Head = (TextView)findViewById(R.id.tvAddAsg);
+        Submission = (TextView)findViewById(R.id.tvSub);
         asgTitle = (EditText)findViewById(R.id.etAsgTitle);
-        subDate = (EditText)findViewById(R.id.etLastDate);
+        subDate = (EditText)findViewById(R.id.subDate);
+        subMonth = (EditText)findViewById(R.id.subMonth);
+        subYear = (EditText)findViewById(R.id.subYear);
         asgQuestions = (EditText)findViewById(R.id.etQuestions);
         AddSend = (Button) findViewById(R.id.btnAddSub);
 
 
 
-        checkDate();
+        //checkDate();
 
 
         AddSend.setOnClickListener(new View.OnClickListener() {
@@ -66,27 +70,27 @@ public class AddFirst extends AppCompatActivity {
         map = ServerValue.TIMESTAMP;
 
 
-        SendAssignment sendAssignment = new SendAssignment(title,sdate,question,map);
+        SendAssignment sendAssignment = new SendAssignment(title,sdate,smonth,syear,question,map);
         myRef.setValue(sendAssignment);
 
         Toast.makeText(AddFirst.this,"Assignment Added Successfully" ,Toast.LENGTH_SHORT).show();
     }
 
-    private void checkDate(){
-        Calendar today = Calendar.getInstance();
-        int dayOfMonth = today.get(Calendar.DAY_OF_MONTH);
-        int month = today.get(Calendar.MONTH);
-        int year = today.get(Calendar.YEAR);
-        if (month == Calendar.APRIL && dayOfMonth == 26 && year == 2019) {
-
-            AddSend.setEnabled(true);
-        }
-        else
-        {
-
-            AddSend.setEnabled(true);
-        }
-    }
+//    private void checkDate(){
+//        Calendar today = Calendar.getInstance();
+//        int dayOfMonth = today.get(Calendar.DAY_OF_MONTH);
+//        int month = today.get(Calendar.MONTH);
+//        int year = today.get(Calendar.YEAR);
+//        if (month > finalValue|| dayOfMonth > 26 || year > 2019) {
+//
+//            AddSend.setEnabled(true);
+//        }
+//        else
+//        {
+//
+//            AddSend.setEnabled(true);
+//        }
+//    }
 
     private Boolean validate(){
 
@@ -94,11 +98,24 @@ public class AddFirst extends AppCompatActivity {
 
         title = asgTitle.getText().toString();
         sdate = subDate.getText().toString();
+        smonth = subMonth.getText().toString();
+        syear = subYear.getText().toString();
         question = asgQuestions.getText().toString();
 
 
-        if(title.isEmpty() || sdate.isEmpty() || question.isEmpty()){
+
+
+
+
+        if(title.isEmpty() || sdate.isEmpty() || question.isEmpty() || smonth.isEmpty() || syear.isEmpty()){
             Toast.makeText(AddFirst.this,"Please Fill All Columns",Toast.LENGTH_SHORT).show();
+            int sDateInt=Integer.parseInt(sdate);
+            int sMonthInt=Integer.parseInt(smonth);
+            int sYearInt=Integer.parseInt(syear);
+            if(sDateInt>=32 || sMonthInt>=13 || sYearInt>=10000);{
+                Toast.makeText(AddFirst.this,"Invalid Date",Toast.LENGTH_SHORT).show();
+
+            }
         }
         else{
             result = true;

@@ -36,7 +36,19 @@
         <activity android:name=".RecieveFirst" />
         <activity android:name=".CheckFirst" />
         <activity android:name=".MarksListFirst" />
-        <activity android:name=".AssessmentFirst"></activity>
+        <activity android:name=".AssessmentFirst" />
+        <activity android:name=".AddSecond" />
+        <activity android:name=".CheckSecond" />
+        <activity android:name=".MarksListSecond" />
+        <activity android:name=".AssessmentSecond" />
+        <activity android:name=".AddThird" />
+        <activity android:name=".AssessmentThird" />
+        <activity android:name=".CheckThird" />
+        <activity android:name=".MarksListThird" />
+        <activity android:name=".StudSecondYear" />
+        <activity android:name=".StudThirdYear" />
+        <activity android:name=".RecieveSecond" />
+        <activity android:name=".RecieveThird"></activity>
     </application>
 
 </manifest>

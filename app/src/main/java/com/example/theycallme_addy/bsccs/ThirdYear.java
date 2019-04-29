@@ -15,14 +15,16 @@ public class ThirdYear extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private TextView testing;
-    private Button studList;
+    private Button studList, add, checkAsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_year);
 
-        studList = (Button)findViewById(R.id.btnStdList3);
+        studList = (Button)findViewById(R.id.btnStdList1);
+        add = (Button)findViewById(R.id.btnAddAsgn);
+        checkAsg = (Button)findViewById(R.id.btnCheck);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -30,6 +32,21 @@ public class ThirdYear extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ThirdYear.this, ListThird.class));
+            }
+        });
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ThirdYear.this, AddThird.class));
+            }
+        });
+
+        checkAsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ThirdYear.this, CheckThird.class));
             }
         });
     }

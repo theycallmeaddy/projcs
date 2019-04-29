@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SecondActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private Button fyAsg;
+    private Button fyAsg, syAsg, tyAsg;
 
 
     @Override
@@ -23,11 +23,27 @@ public class SecondActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         fyAsg = (Button)findViewById(R.id.btnStudFirst);
+        syAsg = (Button)findViewById(R.id.btnStudSecond);
+        tyAsg = (Button)findViewById(R.id.btnStudThird);
 
         fyAsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SecondActivity.this, StudFirstYear.class));
+            }
+        });
+
+        syAsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondActivity.this, StudSecondYear.class));
+            }
+        });
+
+        tyAsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondActivity.this, StudThirdYear.class));
             }
         });
 

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +38,6 @@ public class ListFirst extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this,R.layout.user_info, R.id.userInfo, list);
 
-        list.add("Name"+ "  " + "Roll No.");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -45,7 +45,7 @@ public class ListFirst extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     userProfile = ds.getValue(UserProfile.class);
                     if(userProfile.getYear().toString().equals("First Year")){
-                        list.add(userProfile.getUserName().toString()+ "    " + userProfile.getUserRoll().toString());
+                        list.add(userProfile.getUserRoll().toString()+ "       " +userProfile.getUserName().toString() );
                     }
                 }
 
@@ -54,7 +54,7 @@ public class ListFirst extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(ListFirst.this,"Error occurred!",Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.theycallme_addy.bsccs;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,7 @@ public class RecieveFirst extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 RecieveAssignment recieveAssignment = dataSnapshot.getValue(RecieveAssignment.class);
                 question.setText(recieveAssignment.getAsgQuestions());
+                question.setMovementMethod(new ScrollingMovementMethod());
             }
 
             @Override
@@ -79,7 +81,12 @@ public class RecieveFirst extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference().child("Assignment First Year Answers").child(value).child(firebaseAuth.getUid());
-        RecieveAnswer recieveAnswer = new RecieveAnswer(answer);
+
+        Map map = new HashMap();
+
+        map = ServerValue.TIMESTAMP;
+
+        RecieveAnswer recieveAnswer = new RecieveAnswer(answer ,map);
         myRef.setValue(recieveAnswer);
 
         Toast.makeText(RecieveFirst.this,"Assignment Submitted Successfully" ,Toast.LENGTH_SHORT).show();
