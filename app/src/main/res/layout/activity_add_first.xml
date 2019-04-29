@@ -14,6 +14,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:textSize="22sp"
         android:hint="Assignment Title"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +31,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Add Assignment"
+
+        android:textStyle="bold"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Toolbar.Title"
         app:layout_constraintBottom_toTopOf="@+id/etAsgTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +50,7 @@
         android:gravity="top"
         android:hint="Questions"
         android:inputType="textMultiLine"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddSub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,6 +64,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="36dp"
         android:text="Add"
+        android:background="@drawable/buttonshape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -67,7 +72,7 @@
     <LinearLayout
         android:layout_width="395dp"
         android:layout_height="60dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -81,10 +86,11 @@
             android:id="@+id/tvSub"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.4"
+            android:layout_marginRight="8dp"
+            android:layout_weight="2.9"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="Submission Date : "
+            android:text="  Submission Date : "
             android:textSize="23sp" />
 
         <EditText
@@ -94,6 +100,7 @@
             android:layout_weight=".6"
             android:gravity="center"
             android:hint="DD"
+            android:inputType="date"
             android:textSize="23sp" />
 
         <EditText
@@ -103,6 +110,7 @@
             android:layout_weight=".6"
             android:gravity="center"
             android:hint="MM"
+            android:inputType="date"
             android:textSize="23sp" />
 
         <EditText
@@ -112,6 +120,7 @@
             android:layout_gravity="center"
             android:layout_weight="1.1"
             android:hint="YYYY"
+            android:inputType="date"
             android:textSize="23sp" />
 
 

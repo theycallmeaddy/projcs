@@ -6,8 +6,8 @@
     <item
         android:id= "@+id/teacherMenu"
         android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Teacher">
+        app:showAsAction="always"
+        android:title="Teacher Login">
     </item>
 
     <item

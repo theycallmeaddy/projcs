@@ -45,7 +45,7 @@ public class ListFirst extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     userProfile = ds.getValue(UserProfile.class);
                     if(userProfile.getYear().toString().equals("First Year")){
-                        list.add(userProfile.getUserRoll().toString()+ "       " +userProfile.getUserName().toString() );
+                        list.add(userProfile.getUserRoll().toString()+ "  " +userProfile.getUserName().toString() );
                     }
                 }
 

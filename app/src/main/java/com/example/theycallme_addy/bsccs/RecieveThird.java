@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,8 @@ public class RecieveThird extends AppCompatActivity {
         answerAsg = (EditText)findViewById(R.id.etAnswers);
         ansSubmit = (Button)findViewById(R.id.btnAnswerSubmit);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         heading.setText(value);
 
 
@@ -67,6 +70,7 @@ public class RecieveThird extends AppCompatActivity {
             public void onClick(View v) {
                 if(validate()){
                     sendAssignmentAns();
+                    finish();
                 }
 
             }
@@ -106,5 +110,15 @@ public class RecieveThird extends AppCompatActivity {
             result = true;
         }
         return result;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

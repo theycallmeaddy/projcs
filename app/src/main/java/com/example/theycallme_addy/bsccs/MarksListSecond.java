@@ -55,8 +55,7 @@ public class MarksListSecond extends AppCompatActivity {
                     userProfile = ds.getValue(UserProfile.class);
                     if (userProfile.getYear().toString().equals("Second Year")) {
                         titleasg[i] = userProfile.getUid();
-                        listmarks.add(userProfile.getUserName().toString() + "    " + userProfile.getUserRoll().toString() );
-                        i++;
+                        listmarks.add(userProfile.getUserRoll().toString()+ "   "+userProfile.getUserName().toString() );                        i++;
                     }
                 }
 
@@ -65,7 +64,7 @@ public class MarksListSecond extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(MarksListSecond.this,titleasg[position],Toast.LENGTH_SHORT).show();
+
 
                         String uid = titleasg[position];
                         Intent intent = new Intent(MarksListSecond.this, AssessmentSecond.class);

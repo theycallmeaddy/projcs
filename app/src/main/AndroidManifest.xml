@@ -9,46 +9,118 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".SecondActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdateProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdatePassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TeacherLogin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutUs"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TeacherInterface"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FirstYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SecondYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ThirdYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListThird"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StudFirstYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecieveFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CheckFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MarksListFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AssessmentFirst"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CheckSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MarksListSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AssessmentSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddThird"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AssessmentThird"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CheckThird"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MarksListThird"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StudSecondYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StudThirdYear"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecieveSecond"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecieveThird"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".PasswordActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".UpdateProfile" />
-        <activity android:name=".UpdatePassword" />
-        <activity android:name=".TeacherLogin" />
-        <activity android:name=".AboutUs" />
-        <activity android:name=".TeacherInterface" />
-        <activity android:name=".FirstYear" />
-        <activity android:name=".SecondYear" />
-        <activity android:name=".ThirdYear" />
-        <activity android:name=".ListFirst" />
-        <activity android:name=".ListSecond" />
-        <activity android:name=".ListThird" />
-        <activity android:name=".AddFirst" />
-        <activity android:name=".StudFirstYear" />
-        <activity android:name=".RecieveFirst" />
-        <activity android:name=".CheckFirst" />
-        <activity android:name=".MarksListFirst" />
-        <activity android:name=".AssessmentFirst" />
-        <activity android:name=".AddSecond" />
-        <activity android:name=".CheckSecond" />
-        <activity android:name=".MarksListSecond" />
-        <activity android:name=".AssessmentSecond" />
-        <activity android:name=".AddThird" />
-        <activity android:name=".AssessmentThird" />
-        <activity android:name=".CheckThird" />
-        <activity android:name=".MarksListThird" />
-        <activity android:name=".StudSecondYear" />
-        <activity android:name=".StudThirdYear" />
-        <activity android:name=".RecieveSecond" />
-        <activity android:name=".RecieveThird"></activity>
     </application>
 
 </manifest>

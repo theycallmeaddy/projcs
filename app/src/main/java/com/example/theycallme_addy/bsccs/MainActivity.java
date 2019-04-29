@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView Info;
     private Button Login;
     private int counter = 5;
-    private TextView userRegistration;
+    private Button userRegistration;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private TextView forgotPassword;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.etTeacherPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnTeacherLogin);
-        userRegistration = (TextView)findViewById(R.id.tvRegister);
+        userRegistration = (Button)findViewById(R.id.tvRegister);
         forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
 
 
@@ -64,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(user != null ){
-            finish();
-            Toast.makeText(MainActivity.this, "Wait a Moment!", Toast.LENGTH_LONG).show();
+            progressDialog.setMessage("Logging In...");
+            progressDialog.show();
+            Toast.makeText(MainActivity.this, "Wait a Moment! You are Already Logged In", Toast.LENGTH_LONG).show();
 
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("Teacher").child(firebaseAuth.getUid());
 
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         if(type.toString() == "false"){
                             finish();
                             startActivity(new Intent(MainActivity.this, TeacherInterface.class));
-
+                            progressDialog.dismiss();
 
                         }
 
@@ -190,19 +191,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                type = userProfile.getId();
-                Info.setText(type.toString());
 
+                try {
+                    type = userProfile.getId();
+                    Info.setText(type.toString());
+                    if(emailFlag && type.toString()=="true"){
+                        finish();
 
-                if(emailFlag && type.toString()=="true"){
-                    finish();
+                        startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Verify Your Email" , Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signOut();
+                    }
 
-                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Verify Your Email" , Toast.LENGTH_SHORT).show();
+                }catch(Exception e){
+                    Toast.makeText(MainActivity.this, "Not Registered Student" , Toast.LENGTH_SHORT).show();
                     firebaseAuth.signOut();
                 }
+
 
             }
 

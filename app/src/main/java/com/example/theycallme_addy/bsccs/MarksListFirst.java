@@ -56,7 +56,7 @@ public class MarksListFirst extends AppCompatActivity {
                     userProfile = ds.getValue(UserProfile.class);
                     if (userProfile.getYear().toString().equals("First Year")) {
                         titleasg[i] = userProfile.getUid();
-                        listmarks.add(userProfile.getUserName().toString() + "    " + userProfile.getUserRoll().toString() );
+                        listmarks.add(userProfile.getUserRoll().toString()+ "   "+userProfile.getUserName().toString() );
                         i++;
                     }
                 }
@@ -66,7 +66,7 @@ public class MarksListFirst extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(MarksListFirst.this,titleasg[position],Toast.LENGTH_SHORT).show();
+
 
                         String uid = titleasg[position];
                         Intent intent = new Intent(MarksListFirst.this, AssessmentFirst.class);

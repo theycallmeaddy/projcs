@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:stretchColumns="1">
 
+
         <TextView
             android:id="@+id/tvques"
             android:layout_width="match_parent"
@@ -18,8 +19,12 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:paddingRight="8dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:typeface="sans"
             android:layout_height="match_parent"
             android:text="Loading" />
+
 
     </TableLayout>
 

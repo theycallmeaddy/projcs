@@ -1,8 +1,12 @@
 package com.example.theycallme_addy.bsccs;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,11 +17,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class AssessmentFirst extends AppCompatActivity {
     String uid,value;
     private TextView ques,ans;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
+    Long subtime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +41,13 @@ public class AssessmentFirst extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("Assignment First Year").child(value);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 RecieveAssignment recieveAssignment = dataSnapshot.getValue(RecieveAssignment.class);
-                ques.setText("QUESTIONS\n"+recieveAssignment.getAsgQuestions());
-
+                ques.setText("QUESTIONS : \n"+recieveAssignment.getAsgQuestions());
             }
 
             @Override
@@ -52,8 +61,14 @@ public class AssessmentFirst extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
-                    RecieveAnswer recieveAnswer = dataSnapshot.getValue(RecieveAnswer.class);
-                    ques.append("\n\nANSWERS\n" + recieveAnswer.getAnswer());
+                    RetreiveAnswer retreiveAnswer = dataSnapshot.getValue(RetreiveAnswer.class);
+                    ques.append("\n\nANSWERS : \n" + retreiveAnswer.getAnswer());
+                    subtime = retreiveAnswer.getTimestamp();
+
+                    String dateofsubmission=getDate(subtime);
+
+
+                    Toast.makeText(AssessmentFirst.this,"Answers Submitted on:"+ dateofsubmission,Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e){
                     Toast.makeText(AssessmentFirst.this,"Answers not Submitted yet",Toast.LENGTH_SHORT).show();
@@ -66,5 +81,12 @@ public class AssessmentFirst extends AppCompatActivity {
 
             }
         });
+    }
+
+    private String getDate(long subtime) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(subtime);
+        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        return date;
     }
 }

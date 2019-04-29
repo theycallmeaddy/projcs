@@ -97,9 +97,9 @@ public class AddFirst extends AppCompatActivity {
         Boolean result = false;
 
         title = asgTitle.getText().toString();
-        sdate = subDate.getText().toString();
-        smonth = subMonth.getText().toString();
-        syear = subYear.getText().toString();
+        sdate = subDate.getText().toString().trim();
+        smonth = subMonth.getText().toString().trim();
+        syear = subYear.getText().toString().trim();
         question = asgQuestions.getText().toString();
 
 
@@ -107,12 +107,44 @@ public class AddFirst extends AppCompatActivity {
 
 
 
-        if(title.isEmpty() || sdate.isEmpty() || question.isEmpty() || smonth.isEmpty() || syear.isEmpty()){
+        if(sdate.isEmpty() || smonth.isEmpty() || syear.isEmpty()){
             Toast.makeText(AddFirst.this,"Please Fill All Columns",Toast.LENGTH_SHORT).show();
-            int sDateInt=Integer.parseInt(sdate);
-            int sMonthInt=Integer.parseInt(smonth);
-            int sYearInt=Integer.parseInt(syear);
-            if(sDateInt>=32 || sMonthInt>=13 || sYearInt>=10000);{
+
+            int sDateInt;
+            sDateInt = Integer.parseInt(sdate);
+            int sMonthInt;
+            sMonthInt = Integer.parseInt(smonth);
+            int sYearInt;
+            sYearInt = Integer.parseInt(syear);
+            try {
+                sDateInt = Integer.parseInt(sdate);
+            } catch (NumberFormatException e) {
+                //Will Throw exception!
+                //do something! anything to handle the exception.
+                sDateInt=0;
+            }
+
+            try {
+                sMonthInt = Integer.parseInt(smonth);
+            } catch (NumberFormatException e) {
+                //No problem this time, but still it is good practice to care about exceptions.
+                //Never trust user input :)
+                //Do something! Anything to handle the exception.
+                sMonthInt=0;
+            }
+
+
+
+            try {
+                sYearInt = Integer.parseInt(syear);
+            } catch (NumberFormatException e) {
+                //No problem this time, but still it is good practice to care about exceptions.
+                //Never trust user input :)
+                //Do something! Anything to handle the exception.
+                sYearInt=0;
+            }
+
+            if(sDateInt>=32 || sMonthInt>=13 || sYearInt>=10000){
                 Toast.makeText(AddFirst.this,"Invalid Date",Toast.LENGTH_SHORT).show();
 
             }

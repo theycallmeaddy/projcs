@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,8 @@ public class StudThirdYear extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this,R.layout.user_info, R.id.userInfo, list);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -55,7 +58,7 @@ public class StudThirdYear extends AppCompatActivity {
                     titleasg[i] = recieveAssignment.getAsgTitle().toString();
                     i++;
 
-                    list.add(recieveAssignment.getAsgTitle().toString()+ " (Last Date:"+recieveAssignment.getSubDate()+")");
+                    list.add(i+ "."+recieveAssignment.getAsgTitle().toString()+ "\n(Last Date:"+recieveAssignment.getSubDate()+")");
 
                 }
 
@@ -79,5 +82,14 @@ public class StudThirdYear extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

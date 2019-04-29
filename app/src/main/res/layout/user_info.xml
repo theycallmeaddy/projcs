@@ -7,9 +7,13 @@
         android:id="@+id/userInfo"
         android:textSize="25sp"
         android:textStyle="normal"
+        android:typeface="monospace"
         android:text="aditya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAppearance="@color/colorAccent"
+
         />
 
 

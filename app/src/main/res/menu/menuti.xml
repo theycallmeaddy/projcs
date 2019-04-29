@@ -6,7 +6,7 @@
 
     <item
         android:id= "@+id/logoutMenu"
-        android:icon="@drawable/logout"
+        
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="Logout"

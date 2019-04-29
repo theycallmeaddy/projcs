@@ -14,15 +14,19 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:autoText="true"
+        android:maxLength="16"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.167" />
 
     <EditText
         android:id="@+id/etUserEmail"
@@ -34,6 +38,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Email"
+        android:typeface="serif"
+        android:textColor="#000000"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -52,6 +58,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
+        android:typeface="serif"
+        android:textColor="#000000"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -62,13 +70,14 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="Register"
+        android:background="@drawable/buttonshape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -79,18 +88,21 @@
         android:id="@+id/tvUserLogin"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Already Signed in? Login"
         android:textSize="16dp"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <EditText
         android:id="@+id/etRoll"
@@ -102,7 +114,10 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Roll No"
+        android:maxLength="4"
         android:inputType="number"
+        android:typeface="serif"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -122,7 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.367" />
 
 
 </android.support.constraint.ConstraintLayout>

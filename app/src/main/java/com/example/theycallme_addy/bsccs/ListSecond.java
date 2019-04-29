@@ -36,7 +36,6 @@ public class ListSecond extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, R.layout.user_info, R.id.userInfo, list);
 
-        list.add("Name" + "  " + "Roll No.");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -45,7 +44,7 @@ public class ListSecond extends AppCompatActivity {
 
                     userProfile = ds.getValue(UserProfile.class);
                     if (userProfile.getYear().toString().equals("Second Year")) {
-                        list.add(userProfile.getUserName().toString() + "    " + userProfile.getUserRoll().toString());
+                        list.add(userProfile.getUserRoll().toString() + "  " + userProfile.getUserName().toString());
                     }
                 }
 
